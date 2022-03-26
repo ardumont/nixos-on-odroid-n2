@@ -10,9 +10,19 @@ Patches are welcome!
 
 ## Building an initial SD/MMC image
 
-On an aarch64 system (or with aarch64 emulation):
+### On aarch64 system (or with aarch64 emulation):
 
-    nix-build '<nixos/nixos>' -I nixos-config=./sd-image.nix -A config.system.build.sdImage
+    nix-build '<nixos/nixos>' \
+      -I nixos-config=./sd-image.nix \
+      -A config.system.build.sdImage
+
+### Cross compiling
+
+    nix-build '<nixos/nixos>' \
+      -I nixos-config=./sd-image.nix \
+      --arg crossSystem '(import <nixos/lib>).systems.examples.aarch64-multiplatform' \
+      -A config.system.build.sdImage
+
 
 ## First configuration
 
